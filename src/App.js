@@ -1,20 +1,61 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Person name = "aaa" and age = "26"/>
-        <Person name = "bbb" and age = "25">My hobbies are Coding</Person>
-        <Person name = "ccc" and age = "24"/>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+   persons : [
+      {
+        name : "AAA",
+        age : 28
+      },
+      {
+        name : "BBB",
+        age : 27
+      },
+      {
+        name : "CCC",
+        age : 26
+      }
+    ]
+  }
+
+  switchNameHandler = ()=>{
+    this.setState({
+      persons : [
+        {
+          name : "AAA",
+          age : 28
+        },
+        {
+          name : "BBB",
+          age : 27
+        },
+        {
+          name : "DDD",
+          age : 26
+        }
+      ]
+    })
+    console.log("switchNameHandler");
+  }
+  render(){
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <button onClick = {this.switchNameHandler}>Click Me!</button>
+          <Person name = { this.state.persons[0].name} and age = { this.state.persons[0].age}/>
+          <Person name = { this.state.persons[1].name} and age = { this.state.persons[1].age}>My hobbies are Coding</Person>
+          <Person name = { this.state.persons[2].name} and age = { this.state.persons[2].age}/>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
