@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-class App extends Component {
+const App = props => {
 
-  state = {
-   persons : [
+  const [currentState, updatedState] = useState({
+    persons : [
       {
         name : "AAA",
         age : 28
@@ -19,28 +19,28 @@ class App extends Component {
         age : 26
       }
     ]
-  }
-
-  switchNameHandler = ()=>{
-    this.setState({
+  });
+  const [otherState,setOtherState] = useState({othervalue : 'Some other value'})
+  const [onlySting, setOnlyString] = useState('If we need to pass only string values')
+  console.log(currentState, otherState, onlySting);
+ const switchNameHandler = ()=>{
+  updatedState({
       persons : [
         {
-          name : "AAA",
+          name : "AAAAAAAAAA",
           age : 28
         },
         {
-          name : "BBB",
+          name : "BBBV",
           age : 27
         },
         {
-          name : "DDD",
+          name : "DDDDD",
           age : 26
         }
       ]
-    })
-    console.log("switchNameHandler");
+    });
   }
-  render(){
 
     return (
       <div className="App">
@@ -48,14 +48,13 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <button onClick = {this.switchNameHandler}>Click Me!</button>
-          <Person name = { this.state.persons[0].name} and age = { this.state.persons[0].age}/>
-          <Person name = { this.state.persons[1].name} and age = { this.state.persons[1].age}>My hobbies are Coding</Person>
-          <Person name = { this.state.persons[2].name} and age = { this.state.persons[2].age}/>
+          <button onClick = {switchNameHandler}>Click Me!</button>
+          <Person name = { currentState.persons[0].name} and age = { currentState.persons[0].age}/>
+          <Person name = { currentState.persons[1].name} and age = { currentState.persons[1].age}>My hobbies are Coding</Person>
+          <Person name = { currentState.persons[2].name} and age = { currentState.persons[2].age}/>
         </header>
       </div>
     );
   }
-}
 
 export default App;
