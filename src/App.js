@@ -38,7 +38,6 @@ class App extends Component {
         }
       ]
     })
-    console.log("switchNameHandler");
   }
   render(){
 
@@ -48,7 +47,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <button onClick = {this.switchNameHandler.bind(this, 'parameter')}>Click Me!</button>
+          <button onClick= {() => this.switchNameHandler('Not Recomanded')}>Click Me!</button>
           <Person name = { this.state.persons[0].name} and age = { this.state.persons[0].age} click = {this.switchNameHandler.bind(this,'paragraph')}/>
           <Person name = { this.state.persons[1].name} and age = { this.state.persons[1].age}>My hobbies are Coding</Person>
           <Person name = { this.state.persons[2].name} and age = { this.state.persons[2].age}/>
