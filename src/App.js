@@ -18,7 +18,8 @@ class App extends Component {
         name : "CCC",
         age : 26
       }
-    ]
+    ],
+    showPersons : false
   }
 
   switchNameHandler = (newName)=>{
@@ -57,6 +58,10 @@ class App extends Component {
       ]
     })
   }
+  toggleChangeHandler = ()=>{
+    const DoesShow = this.state.showPersons;
+    this.setState({showPersons : !DoesShow})
+  }
   render(){
     const inlineStyle = {
       backgroundColor : '#eb2edb',
@@ -68,15 +73,13 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <button style = {inlineStyle} onClick= {() => this.switchNameHandler('Not Recomanded')}>Click Me!</button>
-          <Person name = { this.state.persons[0].name} and age = { this.state.persons[0].age} click = {this.switchNameHandler.bind(this,'paragraph')}/>
-          <Person name = { this.state.persons[1].name} changed = {this.nameChangedHandler} and age = { this.state.persons[1].age}>My hobbies are Coding</Person>
-          <Person name = { this.state.persons[2].name} and age = { this.state.persons[2].age}/>
-        </header>
+          <button style = {inlineStyle} onClick= {this.toggleChangeHandler}>Click Me!</button>
+          {this.state.showPersons ? 
+          <div>
+            <Person name = { this.state.persons[0].name} and age = { this.state.persons[0].age} click = {this.switchNameHandler.bind(this,'paragraph')}/>
+            <Person name = { this.state.persons[1].name} changed = {this.nameChangedHandler} and age = { this.state.persons[1].age}>My hobbies are Coding</Person>
+            <Person name = { this.state.persons[2].name} and age = { this.state.persons[2].age}/>
+          </div> : null } 
       </div>
     );
   }
