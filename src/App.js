@@ -22,7 +22,10 @@ class App extends Component {
     showPersons: false
   }
   deletePersonHandler(personIndex){
-    const persons = this.state.persons;
+    //const persons = this.state.persons.splice();
+    //below one using Spread operator to immutable array from ES6 
+    //here its a new array objects from old array
+    const persons = [...this.state.persons];
     persons.splice(personIndex,1);
     this.setState({persons : persons});
   }
