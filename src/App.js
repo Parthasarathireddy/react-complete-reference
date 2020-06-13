@@ -21,24 +21,10 @@ class App extends Component {
     ],
     showPersons: false
   }
-
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        {
-          name: newName,
-          age: 28
-        },
-        {
-          name: "BBB",
-          age: 27
-        },
-        {
-          name: "DDD",
-          age: 26
-        }
-      ]
-    })
+  deletePersonHandler(personIndex){
+    const persons = this.state.persons;
+    persons.splice(personIndex,1);
+    this.setState({persons : persons});
   }
   nameChangedHandler = (event) => {
     this.setState({
@@ -75,9 +61,10 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person name={this.state.persons[0].name} and age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'paragraph')} />
-          <Person name={this.state.persons[1].name} changed={this.nameChangedHandler} and age={this.state.persons[1].age}>My hobbies are Coding</Person>
-          <Person name={this.state.persons[2].name} and age={this.state.persons[2].age} />
+          {/* SHould have return statement for map function */}
+          {this.state.persons.map((person,index) =>{
+            return <Person name={person.name} and age={person.age} click = {() => this.deletePersonHandler(index)}/>
+          })}
         </div>)
     }
     return (
