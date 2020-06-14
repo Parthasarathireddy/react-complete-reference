@@ -73,9 +73,19 @@ class App extends Component {
             click = {() => this.deletePersonHandler(index)}/>
           })}
         </div>)
+        inlineStyle.backgroundColor = 'red';
     }
+    const classes = [];
+    if(this.state.persons.length<=2){
+      classes.push('red');
+    }
+    if(this.state.persons.length<=1){
+      classes.push('bold');
+    }
+
     return (
       <div className="App">
+      <p className = {classes.join(' ')}>Set ClassNames Dynamically</p>
         <button style={inlineStyle} onClick={this.toggleChangeHandler}>Click Me!</button>
         {persons}
       </div>
