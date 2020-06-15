@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import Classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -51,6 +51,7 @@ class App extends Component {
   }
   render() {
     let persons = null;
+    let btnClass = [Classes.Button];
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -65,19 +66,20 @@ class App extends Component {
             click = {() => this.deletePersonHandler(index)}/>
           })}
         </div>)
+        btnClass.push(Classes.Red);
     }
     const Assignedclasses = [];
     if(this.state.persons.length<=2){
-      Assignedclasses.push('red');
+      Assignedclasses.push(Classes.red);
     }
     if(this.state.persons.length<=1){
-      Assignedclasses.push('bold');
+      Assignedclasses.push(Classes.bold);
     }
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
-        <div className="App">
+        <div className={Classes.App}>
         <p className = {Assignedclasses.join(' ')}>Set ClassNames Dynamically</p>
-          <button alternate = {this.state.showPersons}  onClick={this.toggleChangeHandler}>Click Me!</button>
+          <button className = {btnClass.join(' ')} onClick={this.toggleChangeHandler}>Click Me!</button>
           {persons}
         </div>
     );

@@ -19,7 +19,7 @@
   pointer-events: none;
 }
 .Button{
-  background-color:'red';
+  background-color:green;
   color: yellow;
   font: inherit;
   border: 1px solid blue;
@@ -27,14 +27,14 @@
   cursor: pointer;
 }
   .Button:hover {
-    background-color : 'lightgreen';
+    background-color : lightgreen;
     color : black;
   }
   .Button.Red {
-    background-color : 'red';
+    background-color : red;
   }
   .Button.Red:hover {
-          background-color : 'salmon';
+          background-color : salmon;
           color : 'black'
   }
 
