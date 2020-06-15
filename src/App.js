@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
-import { lightgreen, black, salmon } from 'color-name';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color:${props => props.alternate ? 'red' : '#eb2edb'};
+  color: yellow;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color : ${props => props.alternate ? 'salmon' : 'lightgreen'};
+    color : black;
+`;
 
 class App extends Component {
 
@@ -52,19 +63,19 @@ class App extends Component {
     this.setState({ showPersons: !DoesShow })
   }
   render() {
-    const inlineStyle = {
-      backgroundColor: '#eb2edb',
-      color: 'yellow',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover' : {
-        backgroundColor : 'lightgreen',
-        color : 'black'
+    // const inlineStyle = {
+    //   backgroundColor: '#eb2edb',
+    //   color: 'yellow',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover' : {
+    //     backgroundColor : 'lightgreen',
+    //     color : 'black'
 
-      }
-    }
+    //   }
+    // }
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -80,11 +91,11 @@ class App extends Component {
             click = {() => this.deletePersonHandler(index)}/>
           })}
         </div>)
-        inlineStyle.backgroundColor = 'red';
-        inlineStyle[':hover'] = {
-          backgroundColor : 'salmon',
-          color : 'black'
-        }
+        // inlineStyle.backgroundColor = 'red';
+        // inlineStyle[':hover'] = {
+        //   backgroundColor : 'salmon',
+        //   color : 'black'
+        // }
     }
     const classes = [];
     if(this.state.persons.length<=2){
@@ -95,15 +106,13 @@ class App extends Component {
     }
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
-      <StyleRoot>
         <div className="App">
         <p className = {classes.join(' ')}>Set ClassNames Dynamically</p>
-          <button style={inlineStyle} onClick={this.toggleChangeHandler}>Click Me!</button>
+          <StyledButton alternate = {this.state.showPersons}  onClick={this.toggleChangeHandler}>Click Me!</StyledButton>
           {persons}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
