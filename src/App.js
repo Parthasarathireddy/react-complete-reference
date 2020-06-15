@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
+import { lightgreen, black, salmon } from 'color-name';
 
 class App extends Component {
 
@@ -56,7 +58,12 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover' : {
+        backgroundColor : 'lightgreen',
+        color : 'black'
+
+      }
     }
     let persons = null;
     if (this.state.showPersons) {
@@ -74,6 +81,10 @@ class App extends Component {
           })}
         </div>)
         inlineStyle.backgroundColor = 'red';
+        inlineStyle[':hover'] = {
+          backgroundColor : 'salmon',
+          color : 'black'
+        }
     }
     const classes = [];
     if(this.state.persons.length<=2){
@@ -82,15 +93,17 @@ class App extends Component {
     if(this.state.persons.length<=1){
       classes.push('bold');
     }
-
+    //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
-      <div className="App">
-      <p className = {classes.join(' ')}>Set ClassNames Dynamically</p>
-        <button style={inlineStyle} onClick={this.toggleChangeHandler}>Click Me!</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+        <p className = {classes.join(' ')}>Set ClassNames Dynamically</p>
+          <button style={inlineStyle} onClick={this.toggleChangeHandler}>Click Me!</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
