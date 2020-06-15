@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
-
-const StyledButton = styled.button`
-  background-color:${props => props.alternate ? 'red' : '#eb2edb'};
-  color: yellow;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color : ${props => props.alternate ? 'salmon' : 'lightgreen'};
-    color : black;
-`;
 
 class App extends Component {
 
@@ -63,19 +50,6 @@ class App extends Component {
     this.setState({ showPersons: !DoesShow })
   }
   render() {
-    // const inlineStyle = {
-    //   backgroundColor: '#eb2edb',
-    //   color: 'yellow',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover' : {
-    //     backgroundColor : 'lightgreen',
-    //     color : 'black'
-
-    //   }
-    // }
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -91,24 +65,19 @@ class App extends Component {
             click = {() => this.deletePersonHandler(index)}/>
           })}
         </div>)
-        // inlineStyle.backgroundColor = 'red';
-        // inlineStyle[':hover'] = {
-        //   backgroundColor : 'salmon',
-        //   color : 'black'
-        // }
     }
-    const classes = [];
+    const Assignedclasses = [];
     if(this.state.persons.length<=2){
-      classes.push('red');
+      Assignedclasses.push('red');
     }
     if(this.state.persons.length<=1){
-      classes.push('bold');
+      Assignedclasses.push('bold');
     }
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
         <div className="App">
-        <p className = {classes.join(' ')}>Set ClassNames Dynamically</p>
-          <StyledButton alternate = {this.state.showPersons}  onClick={this.toggleChangeHandler}>Click Me!</StyledButton>
+        <p className = {Assignedclasses.join(' ')}>Set ClassNames Dynamically</p>
+          <button alternate = {this.state.showPersons}  onClick={this.toggleChangeHandler}>Click Me!</button>
           {persons}
         </div>
     );
