@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Classes from './App.css';
-import Person from './Person/Person';
+import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
 
@@ -24,7 +25,7 @@ class App extends Component {
     ],
     showPersons: false
   }
-  deletePersonHandler(personIndex){
+  deletePersonHandler = (personIndex)=>{
     //const persons = this.state.persons.splice();
     //below one using Spread operator to immutable array from ES6 
     //here its a new array objects from old array
@@ -51,35 +52,18 @@ class App extends Component {
   }
   render() {
     let persons = null;
-    let btnClass = [Classes.Button];
     if (this.state.showPersons) {
       persons = (
         <div>
-          {/* SHould have return statement for map function */}
-          {/* key should be mandatory for list of elements  */}
-          {this.state.persons.map((person,index) =>{
-            return <Person 
-            name={person.name} and 
-            age={person.age} 
-            key = {person.id}
-            changed = {(event) => this.nameChangedHandler(event,person.id)} 
-            click = {() => this.deletePersonHandler(index)}/>
-          })}
+          <Persons persons = {this.state.persons}
+                  changed = {this.nameChangedHandler}
+                  clicked = {this.deletePersonHandler} />
         </div>)
-        btnClass.push(Classes.Red);
-    }
-    const Assignedclasses = [];
-    if(this.state.persons.length<=2){
-      Assignedclasses.push(Classes.red);
-    }
-    if(this.state.persons.length<=1){
-      Assignedclasses.push(Classes.bold);
     }
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
         <div className={Classes.App}>
-        <p className = {Assignedclasses.join(' ')}>Set ClassNames Dynamically</p>
-          <button className = {btnClass.join(' ')} onClick={this.toggleChangeHandler}>Click Me!</button>
+        <Cockpit clicked = {this.toggleChangeHandler} showPersons = {this.state.showPersons} persons = {this.state.persons}/>
           {persons}
         </div>
     );
