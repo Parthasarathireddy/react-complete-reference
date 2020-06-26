@@ -5,6 +5,11 @@ import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
 
+  constructor(props){
+    super(props);
+    console.log('App.js constructor' + props);
+  }
+
   state = {
     persons: [
       {
@@ -24,6 +29,17 @@ class App extends Component {
       }
     ],
     showPersons: false
+  }
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js getDerived State]', props);
+    return state;
+  }
+  componentWillMount(){
+    console.log('[App.js Component will mount] preparing state');
+  }
+
+  componentDidMount(){
+    console.log('[App.js file] component did mount Ajax request')
   }
   deletePersonHandler = (personIndex)=>{
     //const persons = this.state.persons.splice();
@@ -51,6 +67,7 @@ class App extends Component {
     this.setState({ showPersons: !DoesShow })
   }
   render() {
+    console.log('[App.js file] render method')
     let persons = null;
     if (this.state.showPersons) {
       persons = (
