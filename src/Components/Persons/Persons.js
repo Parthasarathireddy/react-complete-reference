@@ -10,10 +10,10 @@ class Persons extends Component {
                 console.log('[persons.js] should componet update');
                 return true;
         }
-        componentWillReceiveProps(props){
-                //legacy life cycle not available after 16.3
-                console.log('[persons.js] component will receive props', props);
-        }
+        // componentWillReceiveProps(props){
+        //         //legacy life cycle not available after 16.3
+        //         console.log('[persons.js] component will receive props', props);
+        // }
         getSnapshotBeforeUpdate(prevProps, prevState){
                 //use snapshot save some data before updating and use the after update
                 console.log('[persons.js] getsnapshot before update');

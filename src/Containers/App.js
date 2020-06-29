@@ -42,6 +42,14 @@ class App extends Component {
   componentDidMount(){
     console.log('[App.js file] component did mount Ajax request')
   }
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('[app.js] should component update');
+    //return false event not triggered if true even triggered
+    return true;
+  }
+  componentDidUpdate(){
+    console.log('[app.js component did update]')
+  }
   deletePersonHandler = (personIndex)=>{
     //const persons = this.state.persons.splice();
     //below one using Spread operator to immutable array from ES6 
