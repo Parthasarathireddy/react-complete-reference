@@ -34,9 +34,10 @@ class App extends Component {
     console.log('[App.js getDerived State]', props);
     return state;
   }
-  componentWillMount(){
-    console.log('[App.js Component will mount] preparing state');
-  }
+  // componentWillMount(){
+    //legacy life cycle
+  //   console.log('[App.js Component will mount] preparing state');
+  // }
 
   componentDidMount(){
     console.log('[App.js file] component did mount Ajax request')
