@@ -3,7 +3,14 @@ import Classes from './Cockpit.css';
 const Cockpit = (props) => {
     useEffect(()=>{
         console.log('UseEffect run every render cycle');
-    })
+        setTimeout(()=>{
+            alert('Controlling UseEffect');
+        },1000);
+        //we can do Http request
+        //we can use UseEffect more than once
+        //if we use empty array it will work as component did mount
+        //if we pass any this in array like [props.persons] only when it changes only it will call. otherwise it will call only at first time when array is empty.
+    },[]);
     const Assignedclasses = [];
     let btnClass = '';
     if(props.showPersons){
