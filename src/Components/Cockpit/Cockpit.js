@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Classes from './Cockpit.css';
 const Cockpit = (props) => {
+    useEffect(()=>{
+        console.log('UseEffect run every render cycle');
+    })
     const Assignedclasses = [];
     let btnClass = '';
     if(props.showPersons){
