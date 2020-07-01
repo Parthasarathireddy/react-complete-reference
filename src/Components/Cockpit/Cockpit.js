@@ -3,10 +3,11 @@ import Classes from './Cockpit.css';
 const Cockpit = (props) => {
     useEffect(()=>{
         console.log('UseEffect run every render cycle');
-        setTimeout(()=>{
+        const timer = setTimeout(()=>{
             alert('Controlling UseEffect');
         },1000);
         return ()=>{
+            clearTimeout(timer);
             console.log('[Cockpit.js] cleanup work in UseEffect')
         }
         //we can do Http request
