@@ -6,11 +6,21 @@ const Cockpit = (props) => {
         setTimeout(()=>{
             alert('Controlling UseEffect');
         },1000);
+        return ()=>{
+            console.log('[Cockpit.js] cleanup work in UseEffect')
+        }
         //we can do Http request
         //we can use UseEffect more than once
         //if we use empty array it will work as component did mount
         //if we pass any this in array like [props.persons] only when it changes only it will call. otherwise it will call only at first time when array is empty.
     },[]);
+    useEffect(()=>{
+        console.log('UseEffect 2nd run every render cycle');
+        //it will call for every action
+        return ()=>{
+            console.log('[Cockpit.js] 2nd cleanup work in UseEffect')
+        }
+    })
     const Assignedclasses = [];
     let btnClass = '';
     if(props.showPersons){

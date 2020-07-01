@@ -28,7 +28,8 @@ class App extends Component {
         age: 26
       }
     ],
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   }
   static getDerivedStateFromProps(props, state){
     console.log('[App.js getDerived State]', props);
@@ -44,6 +45,7 @@ class App extends Component {
   }
   shouldComponentUpdate(nextProps, nextState){
     console.log('[app.js] should component update');
+    //its a powerful hook if it returns false prevents Vitrual DOM rendering
     //return false event not triggered if true even triggered
     return true;
   }
@@ -89,7 +91,11 @@ class App extends Component {
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
         <div className={Classes.App}>
-        <Cockpit clicked = {this.toggleChangeHandler} showPersons = {this.state.showPersons} persons = {this.state.persons}/>
+        <button onClick = {()=> this.setState({showCockpit: false })}>Remove</button>
+        {this.state.showCockpit ? <Cockpit 
+        clicked = {this.toggleChangeHandler} 
+        showPersons = {this.state.showPersons} 
+        persons = {this.state.persons}/>: null}
           {persons}
         </div>
     );
