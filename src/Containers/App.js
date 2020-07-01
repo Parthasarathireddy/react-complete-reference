@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Classes from './App.css';
 import Persons from '../Components/Persons/Persons';
-import Cockpit from '../Components/Cockpit/Cockpit'
-
+import Cockpit from '../Components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 class App extends Component {
 
   constructor(props){
@@ -90,14 +90,14 @@ class App extends Component {
     }
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
-        <div className={Classes.App}>
+        <WithClass classes={Classes.App}>
         <button onClick = {()=> this.setState({showCockpit: false })}>Remove</button>
         {this.state.showCockpit ? <Cockpit 
         clicked = {this.toggleChangeHandler} 
         showPersons = {this.state.showPersons} 
         personsLength = {this.state.persons.length}/>: null}
           {persons}
-        </div>
+        </WithClass>
     );
   }
 }
