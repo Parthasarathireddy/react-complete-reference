@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
-class Persons extends Component {
+class Persons extends PureComponent {
         // static getDerivedStateFromProps(props, state){
         //         console.log('[Persons.js File] get Derived State From Props');
         //         return state;
         // }
-        shouldComponentUpdate(nextProps, nextState){
-                //have to return true or false
-                console.log('[persons.js] should componet update');
-                if(nextProps.persons !== this.props.persons){
-                        return true
-                }else{
-                        return false;
-                }
-        }
+        // shouldComponentUpdate(nextProps, nextState){
+        //         //have to return true or false
+        //         console.log('[persons.js] should componet update');
+        //         if(nextProps.persons !== this.props.persons){
+        //                 return true
+        //         }else{
+        //                 return false;
+        //         }
+        // }
         // componentWillReceiveProps(props){
         //         //legacy life cycle not available after 16.3
         //         console.log('[persons.js] component will receive props', props);
