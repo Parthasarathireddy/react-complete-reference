@@ -8,7 +8,11 @@ class Persons extends Component {
         shouldComponentUpdate(nextProps, nextState){
                 //have to return true or false
                 console.log('[persons.js] should componet update');
-                return true;
+                if(nextProps.persons !== this.props.persons){
+                        return true
+                }else{
+                        return false;
+                }
         }
         // componentWillReceiveProps(props){
         //         //legacy life cycle not available after 16.3
