@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Classes from './App.css';
+import classes from './App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+// below one not componenet now its just a function
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Auxilary';
 class App extends Component {
 
   constructor(props){
@@ -90,16 +92,16 @@ class App extends Component {
     }
     //if you are using StyleRoot comonent need to wrap up entire div into <StyleRoot> element
     return (
-        <WithClass classes={Classes.App}>
-        <button onClick = {()=> this.setState({showCockpit: false })}>Remove</button>
-        {this.state.showCockpit ? <Cockpit 
-        clicked = {this.toggleChangeHandler} 
-        showPersons = {this.state.showPersons} 
-        personsLength = {this.state.persons.length}/>: null}
-          {persons}
-        </WithClass>
+        <Aux>
+          <button onClick = {()=> this.setState({showCockpit: false })}>Remove</button>
+          {this.state.showCockpit ? <Cockpit 
+          clicked = {this.toggleChangeHandler} 
+          showPersons = {this.state.showPersons} 
+          personsLength = {this.state.persons.length}/>: null}
+            {persons}
+        </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
