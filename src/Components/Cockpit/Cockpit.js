@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Classes from './Cockpit.css';
 const Cockpit = (props) => {
+    const toggleRef = useRef(null);
     useEffect(()=>{
         console.log('UseEffect run every render cycle');
-        const timer = setTimeout(()=>{
-            alert('Controlling UseEffect');
-        },1000);
+        // const timer = setTimeout(()=>{
+        //     alert('Controlling UseEffect');
+        // },1000);
+        toggleRef.current.click();
         return ()=>{
-            clearTimeout(timer);
+            //clearTimeout(timer);
             console.log('[Cockpit.js] cleanup work in UseEffect')
         }
         //we can do Http request
@@ -36,7 +38,10 @@ const Cockpit = (props) => {
     return (
         <div className = {Classes.Cockpit}>
             <p className={Assignedclasses.join(' ')}>Set ClassNames Dynamically</p>
-            <button className={btnClass} onClick={props.clicked}>Click Me!</button>
+            <button 
+            className={btnClass}
+            ref = {toggleRef}
+             onClick={props.clicked}>Click Me!</button>
         </div>
     );
 }
