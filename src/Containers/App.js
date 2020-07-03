@@ -5,6 +5,7 @@ import Cockpit from '../Components/Cockpit/Cockpit';
 // below one not componenet now its just a function
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxilary';
+import AuthContext from '../context/auth-context';
 class App extends Component {
 
   constructor(props){
@@ -32,7 +33,8 @@ class App extends Component {
     ],
     showPersons: false,
     showCockpit: true,
-    changeCounter : 0
+    changeCounter : 0,
+    authenticated : false
   }
   static getDerivedStateFromProps(props, state){
     console.log('[App.js getDerived State]', props);
@@ -87,6 +89,9 @@ class App extends Component {
     const DoesShow = this.state.showPersons;
     this.setState({ showPersons: !DoesShow })
   }
+  loginHandle = ()=>{
+    this.setState({authenticated : true});
+  }
   render() {
     console.log('[App.js file] render method')
     let persons = null;
@@ -102,11 +107,13 @@ class App extends Component {
     return (
         <Aux>
           <button onClick = {()=> this.setState({showCockpit: false })}>Remove</button>
-          {this.state.showCockpit ? <Cockpit 
-          clicked = {this.toggleChangeHandler} 
-          showPersons = {this.state.showPersons} 
-          personsLength = {this.state.persons.length}/>: null}
-            {persons}
+          <AuthContext.Provider value = {{authenticated : this.state.authenticated, login : this.loginHandle}}>
+            {this.state.showCockpit ? <Cockpit 
+            clicked = {this.toggleChangeHandler} 
+            showPersons = {this.state.showPersons} 
+            personsLength = {this.state.persons.length}/>: null}
+              {persons}
+            </AuthContext.Provider>
         </Aux>
     );
   }
